@@ -384,7 +384,7 @@ def load_model(
     Returns:
         A Whisper pipeline.
     """
-
+    print(f"Debug: custom_asr_model = {custom_asr_model}")
     if custom_asr_model:
         print(f"Loading custom ASR model from: {custom_asr_model}")
         model = WhisperModel(
