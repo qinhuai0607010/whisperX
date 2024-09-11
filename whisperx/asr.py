@@ -385,25 +385,30 @@ def load_model(
         A Whisper pipeline.
     """
 
-    if whisper_arch.endswith(".en"):
-        language = "en"
     if custom_asr_model:
-        model = WhisperModel(custom_asr_model, device=device, compute_type=compute_type)
+        print(f"Loading custom ASR model from: {custom_asr_model}")
+        model = WhisperModel(
+            custom_asr_model,
+            device=device,
+            device_index=device_index,
+            compute_type=compute_type,
+            download_root=download_root,
+            cpu_threads=threads,
+        )
     else:
+        if whisper_arch.endswith(".en"):
+            language = "en"
         model = model or WhisperModel(
-        whisper_arch,
-        device=device,
-        device_index=device_index,
-        compute_type=compute_type,
-        download_root=download_root,
-        cpu_threads=threads,
-    )
+            whisper_arch,
+            device=device,
+            device_index=device_index,
+            compute_type=compute_type,
+            download_root=download_root,
+            cpu_threads=threads,
+        )
     if asr_options is not None:
         default_asr_options.update(asr_options)
 
-    # 添加hotwords支持
-    if "hotwords" in default_asr_options and default_asr_options["hotwords"]:
-        default_asr_options["hotwords"] = default_asr_options["hotwords"].split(",")
     if language is not None:
         tokenizer = faster_whisper.tokenizer.Tokenizer(
             model.hf_tokenizer,
