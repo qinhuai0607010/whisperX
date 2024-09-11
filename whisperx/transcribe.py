@@ -101,6 +101,7 @@ def cli():
     device: str = args.pop("device")
     device_index: int = args.pop("device_index")
     compute_type: str = args.pop("compute_type")
+    custom_asr_model: str = args.pop("custom_asr_model")
 
     # model_flush: bool = args.pop("model_flush")
     os.makedirs(output_dir, exist_ok=True)
@@ -169,6 +170,8 @@ def cli():
         "initial_prompt": args.pop("initial_prompt"),
         "suppress_tokens": [int(x) for x in args.pop("suppress_tokens").split(",")],
         "suppress_numerals": args.pop("suppress_numerals"),
+        "hotwords": args.pop("hotwords"),
+        
     }
 
     writer = get_writer(output_format, output_dir)
@@ -196,6 +199,7 @@ def cli():
         vad_options={"vad_onset": vad_onset, "vad_offset": vad_offset},
         task=task,
         threads=faster_whisper_threads,
+        custom_asr_model=custom_asr_model,
     )
 
     for audio_path in args.pop("audio"):
