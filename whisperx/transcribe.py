@@ -119,8 +119,8 @@ def cli():
     min_speakers: int = args.pop("min_speakers")
     max_speakers: int = args.pop("max_speakers")
     print_progress: bool = args.pop("print_progress")
-    prnt_duration: bool = args.pop("prnt_duration")
-    prnt_segments: bool = args.pop("prnt_segments")
+    prnt_duration: bool = args.pop("prnt_duration", False)
+    prnt_segments: bool = args.pop("prnt_segments", False)
 
     if args["language"] is not None:
         args["language"] = args["language"].lower()
