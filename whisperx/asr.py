@@ -406,8 +406,6 @@ def load_model(
             download_root=download_root,
             cpu_threads=threads,
         )
-    if asr_options is not None:
-        default_asr_options.update(asr_options)
 
     if language is not None:
         tokenizer = faster_whisper.tokenizer.Tokenizer(
