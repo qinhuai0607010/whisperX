@@ -387,8 +387,7 @@ def load_model(
     print(f"Debug: custom_asr_model = {custom_asr_model}")
     if custom_asr_model:
         print(f"Loading custom ASR model from: {custom_asr_model}")
-        if os.path.isfile(custom_asr_model):
-            model = WhisperModel(
+        model = WhisperModel(
                 custom_asr_model,
                 device=device,
                 device_index=device_index,
