@@ -365,6 +365,7 @@ def load_model(
     download_root=None,
     threads=4,
     prnt_duration=False,
+    custom_asr_model=None,  # 新增参数
 ):
     # ================ function start time =================
     start = time.time()
@@ -386,8 +387,10 @@ def load_model(
 
     if whisper_arch.endswith(".en"):
         language = "en"
-
-    model = model or WhisperModel(
+    if custom_asr_model:
+        model = WhisperModel(custom_asr_model, device=device, compute_type=compute_type)
+    else:
+        model = model or WhisperModel(
         whisper_arch,
         device=device,
         device_index=device_index,
@@ -395,6 +398,12 @@ def load_model(
         download_root=download_root,
         cpu_threads=threads,
     )
+    if asr_options is not None:
+        default_asr_options.update(asr_options)
+
+    # 添加hotwords支持
+    if "hotwords" in default_asr_options and default_asr_options["hotwords"]:
+        default_asr_options["hotwords"] = default_asr_options["hotwords"].split(",")
     if language is not None:
         tokenizer = faster_whisper.tokenizer.Tokenizer(
             model.hf_tokenizer,
