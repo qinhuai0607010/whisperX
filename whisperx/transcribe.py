@@ -84,6 +84,12 @@ def cli():
     parser.add_argument("--print_progress", type=str2bool, default = False, help = "if True, progress will be printed in transcribe() and align() methods.")
     parser.add_argument("--hotwords", type=str, default=None, help="逗号分隔的热词列表")
     parser.add_argument("--custom_asr_model", type=str, default=None, help="自定义ASR模型的路径")
+    parser.add_argument("--prnt_duration", type=str2bool, default=False, help="Print duration of model loading and inference")
+    parser.add_argument("--prnt_segments", type=str2bool, default=False, help="Print duration of model loading and inference")
+
+
+
+
     # fmt: on
 
     args = parser.parse_args().__dict__
