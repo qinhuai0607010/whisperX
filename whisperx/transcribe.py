@@ -82,6 +82,9 @@ def cli():
     parser.add_argument("--hf_token", type=str, default=None, help="Hugging Face Access Token to access PyAnnote gated models")
 
     parser.add_argument("--print_progress", type=str2bool, default = False, help = "if True, progress will be printed in transcribe() and align() methods.")
+    parser.add_argument("--hotwords", type=str, default=None, help="逗号分隔的热词列表")
+    parser.add_argument("--custom_asr_model", type=str, default=None, help="自定义ASR模型的路径")
+    parser.add_argument("--custom_align_model", type=str, default=None, help="自定义对齐模型的路径")
     # fmt: on
 
     args = parser.parse_args().__dict__
