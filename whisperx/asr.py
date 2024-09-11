@@ -395,8 +395,6 @@ def load_model(
                 cpu_threads=threads,
                 local_files_only=True,  # 强制使用本地文件
             )
-        else:
-            raise ValueError(f"Custom ASR model file not found: {custom_asr_model}")
     else:
         if whisper_arch.endswith(".en"):
             language = "en"
