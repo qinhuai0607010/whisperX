@@ -102,6 +102,7 @@ def cli():
     device_index: int = args.pop("device_index")
     compute_type: str = args.pop("compute_type")
     custom_asr_model: str = args.pop("custom_asr_model")
+    hotwords: str = args.pop("hotwords")
 
     # model_flush: bool = args.pop("model_flush")
     os.makedirs(output_dir, exist_ok=True)
