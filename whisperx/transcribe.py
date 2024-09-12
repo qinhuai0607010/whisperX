@@ -171,7 +171,7 @@ def cli():
         "initial_prompt": args.pop("initial_prompt"),
         "suppress_tokens": [int(x) for x in args.pop("suppress_tokens").split(",")],
         "suppress_numerals": args.pop("suppress_numerals"),
-        "hotwords": args.pop("hotwords"),
+        "hotwords": hotwords,
         
     }
 
