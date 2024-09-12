@@ -459,7 +459,7 @@ def load_model(
         **default_asr_options
     )
 
-    default_vad_options = {"vad_onset": 0.500, "vad_offset": 0.363}
+    default_vad_options = {"vad_onset": 0.1, "vad_offset": 0.1}
 
     if vad_options is not None:
         default_vad_options.update(vad_options)
